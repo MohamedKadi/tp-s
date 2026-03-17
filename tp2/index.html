@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulaire d'inscription</title>
+  </head>
+  <body>
+    <h1>Formulaire d'inscription</h1>
+
+    <form id="registrationForm" novalidate>
+      <fieldset>
+        <legend>Informations personnelles</legend>
+
+        <label for="nom">Nom *</label><br />
+        <input
+          type="text"
+          id="nom"
+          name="nom"
+          autocomplete="family-name"
+          required
+          minlength="2"
+          maxlength="50"
+          pattern="[A-Za-zÀ-ÿ\-' ]+"
+          title="Veuillez saisir votre nom (lettres uniquement)."
+        /><br /><br />
+
+        <label for="prenom">Prénom *</label><br />
+        <input
+          type="text"
+          id="prenom"
+          name="prenom"
+          autocomplete="given-name"
+          required
+          minlength="2"
+          maxlength="50"
+          pattern="[A-Za-zÀ-ÿ\-' ]+"
+          title="Veuillez saisir votre prénom (lettres uniquement)."
+        /><br /><br />
+
+        <label for="email">Adresse e-mail *</label><br />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          autocomplete="email"
+          required
+          title="Veuillez saisir une adresse e-mail valide."
+        /><br /><br />
+
+        <label for="telephone">Téléphone * (format : 06 12 34 56 78)</label
+        ><br />
+        <input
+          type="tel"
+          id="telephone"
+          name="telephone"
+          autocomplete="tel"
+          required
+          pattern="(0|\+33)[1-9]([-. ]?[0-9]{2}){4}"
+          title="Format invalide. Exemple : 06 12 34 56 78 ou +33 6 12 34 56 78"
+        /><br /><br />
+
+        <label for="ddn">Date de naissance * (âge minimum : 18 ans)</label
+        ><br />
+        <input
+          type="date"
+          id="ddn"
+          name="date_naissance"
+          autocomplete="bday"
+          required
+          title="Vous devez avoir au moins 18 ans."
+        /><br /><br />
+      </fieldset>
+
+      <fieldset>
+        <legend>Sécurité</legend>
+
+        <label for="password"
+          >Mot de passe * (min. 8 caractères, 1 majuscule, 1 chiffre)</label
+        ><br />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          autocomplete="new-password"
+          required
+          minlength="8"
+          pattern="(?=.*[A-Z])(?=.*[0-9]).{8,}"
+          title="Min. 8 caractères avec au moins 1 majuscule et 1 chiffre."
+        /><br /><br />
+
+        <label for="password2">Confirmer le mot de passe *</label><br />
+        <input
+          type="password"
+          id="password2"
+          name="password_confirm"
+          autocomplete="new-password"
+          required
+        /><br /><br />
+      </fieldset>
+
+      <fieldset>
+        <legend>Localisation</legend>
+
+        <label for="pays">Pays *</label><br />
+        <input
+          list="pays-list"
+          id="pays"
+          name="pays"
+          autocomplete="country-name"
+          required
+          title="Veuillez sélectionner ou saisir votre pays."
+        />
+        <datalist id="pays-list">
+          <option value="France"></option>
+          <option value="Maroc"></option>
+          <option value="Algérie"></option>
+          <option value="Tunisie"></option>
+          <option value="Belgique"></option>
+          <option value="Suisse"></option>
+          <option value="Canada"></option>
+          <option value="Sénégal"></option>
+          <option value="Côte d'Ivoire"></option>
+          <option value="Espagne"></option>
+          <option value="Italie"></option>
+          <option value="Allemagne"></option>
+          <option value="États-Unis"></option></datalist
+        ><br /><br />
+      </fieldset>
+
+      <fieldset>
+        <legend>Profil</legend>
+
+        <p>Genre *</p>
+        <label
+          ><input type="radio" name="genre" value="homme" required />
+          Homme</label
+        >
+        <label><input type="radio" name="genre" value="femme" /> Femme</label>
+        <label><input type="radio" name="genre" value="autre" /> Autre</label>
+        <label
+          ><input type="radio" name="genre" value="non_precise" /> Préfère ne
+          pas préciser</label
+        >
+        <br /><br />
+
+        <p>Centres d'intérêt</p>
+        <label
+          ><input type="checkbox" name="interets" value="tech" />
+          Technologie</label
+        >
+        <label
+          ><input type="checkbox" name="interets" value="sport" /> Sport</label
+        >
+        <label
+          ><input type="checkbox" name="interets" value="musique" />
+          Musique</label
+        >
+        <label
+          ><input type="checkbox" name="interets" value="cinema" />
+          Cinéma</label
+        >
+        <label
+          ><input type="checkbox" name="interets" value="voyage" />
+          Voyage</label
+        >
+        <label
+          ><input type="checkbox" name="interets" value="cuisine" />
+          Cuisine</label
+        >
+        <label
+          ><input type="checkbox" name="interets" value="lecture" />
+          Lecture</label
+        >
+        <label><input type="checkbox" name="interets" value="art" /> Art</label>
+        <br /><br />
+
+        <label for="bio">Biographie</label><br />
+        <textarea
+          id="bio"
+          name="bio"
+          maxlength="500"
+          rows="4"
+          cols="50"
+          placeholder="Parlez-nous de vous en quelques mots… (max. 500 caractères)"
+        ></textarea
+        ><br /><br />
+
+        <label for="photo">Photo de profil (JPG, PNG, WebP)</label><br />
+        <input
+          type="file"
+          id="photo"
+          name="photo"
+          accept="image/png, image/jpeg, image/webp"
+        /><br /><br />
+      </fieldset>
+
+      <label>
+        <input
+          type="checkbox"
+          id="cgu"
+          name="cgu"
+          required
+          title="Vous devez accepter les CGU pour continuer."
+        />
+        J'accepte les Conditions Générales d'Utilisation et la Politique de
+        confidentialité. *
+      </label>
+      <br /><br />
+
+      <button type="submit">Créer mon compte</button>
+    </form>
+
+    <script>
+      const ddn = document.getElementById("ddn");
+      const max = new Date();
+      max.setFullYear(max.getFullYear() - 18);
+      ddn.max = max.toISOString().split("T")[0];
+
+      ddn.addEventListener("change", () => {
+        const age =
+          (new Date() - new Date(ddn.value)) / (1000 * 60 * 60 * 24 * 365.25);
+        ddn.setCustomValidity(
+          age < 18 ? "Vous devez avoir au moins 18 ans." : "",
+        );
+      });
+
+      const pw = document.getElementById("password");
+      const pw2 = document.getElementById("password2");
+      pw2.addEventListener("input", () => {
+        pw2.setCustomValidity(
+          pw.value !== pw2.value
+            ? "Les mots de passe ne correspondent pas."
+            : "",
+        );
+      });
+      pw.addEventListener("input", () => {
+        if (pw2.value) pw2.dispatchEvent(new Event("input"));
+      });
+
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (e.target.checkValidity()) {
+            alert("Inscription réussie !");
+          } else {
+            e.target.reportValidity();
+          }
+        });
+    </script>
+  </body>
+</html>

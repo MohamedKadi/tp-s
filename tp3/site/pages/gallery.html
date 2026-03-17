@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galerie – Ait El Kadi Company LLC</title>
+    <meta
+      name="description"
+      content="Découvrez notre portfolio de projets : sites web, applications mobiles, interfaces et plus encore."
+    />
+    <meta
+      name="keywords"
+      content="portfolio, galerie, projets, réalisations, Ait El Kadi Co."
+    />
+    <meta name="author" content="Ait El Kadi Company LLC" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Galerie – Ait El Kadi Company LLC" />
+    <meta
+      property="og:description"
+      content="Notre portfolio de réalisations : sites web, apps mobiles et design."
+    />
+    <meta
+      property="og:url"
+      content="http://c3-mo-aitelkadi.enset.ma/tp3/site/pages/gallery.html"
+    />
+    <meta
+      property="og:image"
+      content="http://c3-mo-aitelkadi.enset.ma/tp3/site/images/og-gallery.jpg"
+    />
+    <meta property="og:site_name" content="Ait El Kadi Company LLC" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      /* Filter bar */
+      .filter-bar {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-bottom: 2.5rem;
+      }
+      .filter-btn {
+        padding: 0.45rem 1.2rem;
+        border: 1.5px solid #d1d5db;
+        border-radius: 20px;
+        background: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: var(--mid);
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+      }
+
+      .gallery-item {
+        cursor: pointer;
+      }
+
+      /* Lightbox */
+      #lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+      #lightbox.open {
+        display: flex;
+      }
+      #lightbox img {
+        max-height: 80vh;
+        max-width: 90vw;
+        border-radius: 8px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+      }
+      #lightbox-close {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        line-height: 1;
+      }
+      #lightbox-caption {
+        position: absolute;
+        bottom: 1.5rem;
+        color: white;
+        font-size: 0.9rem;
+        text-align: center;
+        left: 0;
+        right: 0;
+      }
+
+      /* Category labels for placeholder images */
+      .gallery-label {
+        position: absolute;
+        top: 0.7rem;
+        left: 0.7rem;
+        background: rgba(0, 0, 0, 0.55);
+        color: white;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="container">
+        <a href="../index.html" class="logo">Ait El Kadi<span> LLC</span></a>
+        <ul class="nav-links">
+          <li><a href="../index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html" class="active">Galerie</a></li>
+          <li><a href="contact.html" class="nav-cta">Contact</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="fil d'Ariane">
+          <a href="../index.html">Accueil</a>
+          <span>›</span>
+          <span>Galerie</span>
+        </nav>
+        <h1>Notre Galerie</h1>
+        <p>Quelques-unes de nos réalisations les plus marquantes</p>
+      </div>
+    </section>
+
+    <!-- GALERIE -->
+    <section class="section">
+      <div class="container">
+        <!-- Filtre -->
+        <div class="filter-bar" role="group" aria-label="Filtrer par catégorie">
+          <button class="filter-btn active" data-filter="all">Tout voir</button>
+          <button class="filter-btn" data-filter="web">Sites Web</button>
+          <button class="filter-btn" data-filter="mobile">Mobile</button>
+          <button class="filter-btn" data-filter="design">Design</button>
+          <button class="filter-btn" data-filter="cloud">Cloud & Data</button>
+        </div>
+
+        <!-- Grille responsive avec srcset et picture -->
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Item 1 -->
+          <div
+            class="gallery-item"
+            data-cat="web"
+            data-caption="E-commerce Agence Créa Digital – Plateforme de vente en ligne"
+          >
+            <span class="gallery-label">WEB</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/web1/800/600"
+              />
+              <source
+                media="(max-width: 900px)"
+                srcset="https://picsum.photos/seed/web1/800/600"
+              />
+              <img
+                src="https://picsum.photos/seed/web1/800/600"
+                srcset="https://picsum.photos/seed/web1/800/600"
+                sizes="(max-width: 480px) 100vw, (max-width: 900px) 50vw, 33vw"
+                alt="E-commerce Agence Créa Digital"
+                loading="lazy"
+                width="800"
+                height="600"
+                onerror="this.src = 'https://picsum.photos/seed/web1/800/600'"
+              />
+            </picture>
+            <div class="gallery-overlay">E-commerce Agence Créa Digital</div>
+          </div>
+
+          <!-- Item 2 -->
+          <div
+            class="gallery-item"
+            data-cat="mobile"
+            data-caption="Application mobile LogiTrans Maroc – Gestion de commandes"
+          >
+            <span class="gallery-label">MOBILE</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/mobile1/800/1000"
+              />
+              <img
+                src="https://picsum.photos/seed/mobile1/800/1000"
+                srcset="https://picsum.photos/seed/mobile1/800/1000"
+                sizes="(max-width: 480px) 100vw, 33vw"
+                alt="App mobile LogiTrans Maroc"
+                loading="lazy"
+                width="800"
+                height="1000"
+                onerror="
+                  this.src = 'https://picsum.photos/seed/mobile1/800/1000'
+                "
+              />
+            </picture>
+            <div class="gallery-overlay">App mobile LogiTrans Maroc</div>
+          </div>
+
+          <!-- Item 3 -->
+          <div
+            class="gallery-item"
+            data-cat="design"
+            data-caption="Design System Studio Pixel – Charte graphique complète"
+          >
+            <span class="gallery-label">DESIGN</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/design1/800/500"
+              />
+              <img
+                src="https://picsum.photos/seed/design1/800/500"
+                srcset="https://picsum.photos/seed/design1/800/500"
+                sizes="(max-width: 480px) 100vw, 33vw"
+                alt="Design System Studio Pixel"
+                loading="lazy"
+                width="800"
+                height="500"
+                onerror="
+                  this.src = 'https://picsum.photos/seed/design1/800/500'
+                "
+              />
+            </picture>
+            <div class="gallery-overlay">Design System Studio Pixel</div>
+          </div>
+
+          <!-- Item 4 -->
+          <div
+            class="gallery-item"
+            data-cat="cloud"
+            data-caption="Dashboard analytique DataViz Pro – Visualisation de données"
+          >
+            <span class="gallery-label">DATA</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/cloud1/800/500"
+              />
+              <img
+                src="https://picsum.photos/seed/cloud1/800/500"
+                srcset="https://picsum.photos/seed/cloud1/800/500"
+                sizes="(max-width: 480px) 100vw, 33vw"
+                alt="Dashboard DataViz Pro"
+                loading="lazy"
+                width="800"
+                height="500"
+                onerror="this.src = 'https://picsum.photos/seed/cloud1/800/500'"
+              />
+            </picture>
+            <div class="gallery-overlay">Dashboard analytique DataViz Pro</div>
+          </div>
+
+          <!-- Item 5 -->
+          <div
+            class="gallery-item"
+            data-cat="web"
+            data-caption="Site institutionnel Fondation Al Amal – Présence en ligne"
+          >
+            <span class="gallery-label">WEB</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/web2/800/700"
+              />
+              <img
+                src="https://picsum.photos/seed/web2/800/700"
+                srcset="https://picsum.photos/seed/web2/800/700"
+                sizes="(max-width: 480px) 100vw, 33vw"
+                alt="Site institutionnel Fondation Al Amal"
+                loading="lazy"
+                width="800"
+                height="700"
+                onerror="this.src = 'https://picsum.photos/seed/web2/800/700'"
+              />
+            </picture>
+            <div class="gallery-overlay">
+              Site institutionnel Fondation Al Amal
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div
+            class="gallery-item"
+            data-cat="mobile"
+            data-caption="Application santé HealthTrack – Suivi médical"
+          >
+            <span class="gallery-label">MOBILE</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/mobile2/800/900"
+              />
+              <img
+                src="https://picsum.photos/seed/mobile2/800/900"
+                srcset="https://picsum.photos/seed/mobile2/800/900"
+                sizes="(max-width: 480px) 100vw, 33vw"
+                alt="App santé HealthTrack"
+                loading="lazy"
+                width="800"
+                height="900"
+                onerror="
+                  this.src = 'https://picsum.photos/seed/mobile2/800/900'
+                "
+              />
+            </picture>
+            <div class="gallery-overlay">App santé HealthTrack</div>
+          </div>
+
+          <!-- Item 7 -->
+          <div
+            class="gallery-item"
+            data-cat="design"
+            data-caption="Identité visuelle BrandLab – Branding complet"
+          >
+            <span class="gallery-label">DESIGN</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/design2/800/600"
+              />
+              <img
+                src="https://picsum.photos/seed/design2/800/600"
+                srcset="https://picsum.photos/seed/design2/800/600"
+                sizes="(max-width: 480px) 100vw, 33vw"
+                alt="Branding BrandLab"
+                loading="lazy"
+                width="800"
+                height="600"
+                onerror="
+                  this.src = 'https://picsum.photos/seed/design2/800/600'
+                "
+              />
+            </picture>
+            <div class="gallery-overlay">Branding BrandLab</div>
+          </div>
+
+          <!-- Item 8 -->
+          <div
+            class="gallery-item"
+            data-cat="cloud"
+            data-caption="Architecture Cloud CloudSync SA – Migration AWS"
+          >
+            <span class="gallery-label">CLOUD</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/cloud2/800/550"
+              />
+              <img
+                src="https://picsum.photos/seed/cloud2/800/550"
+                srcset="https://picsum.photos/seed/cloud2/800/550"
+                sizes="(max-width: 480px) 100vw, 33vw"
+                alt="Cloud CloudSync SA"
+                loading="lazy"
+                width="800"
+                height="550"
+                onerror="this.src = 'https://picsum.photos/seed/cloud2/800/550'"
+              />
+            </picture>
+            <div class="gallery-overlay">Architecture Cloud CloudSync SA</div>
+          </div>
+
+          <!-- Item 9 -->
+          <div
+            class="gallery-item"
+            data-cat="web"
+            data-caption="Plateforme LMS EduLearn Platform – Formation en ligne"
+          >
+            <span class="gallery-label">WEB</span>
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcset="https://picsum.photos/seed/web3/800/600"
+              />
+              <img
+                src="https://picsum.photos/seed/web3/800/600"
+                srcset="https://picsum.photos/seed/web3/800/600"
+                sizes="(max-width: 480px) 100vw, 33vw"
+                alt="LMS EduLearn Platform"
+                loading="lazy"
+                width="800"
+                height="600"
+                onerror="this.src = 'https://picsum.photos/seed/web3/800/600'"
+              />
+            </picture>
+            <div class="gallery-overlay">Plateforme LMS EduLearn Platform</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Vue agrandie"
+    >
+      <button id="lightbox-close" aria-label="Fermer">✕</button>
+      <img id="lightbox-img" src="" alt="" />
+      <p id="lightbox-caption"></p>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+      <div class="container">
+        <h2>Votre projet mérite d'être ici</h2>
+        <p>Parlez-nous de votre idée et commençons à construire ensemble.</p>
+        <a href="contact.html" class="btn btn-outline">Démarrer un projet</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="logo"
+              >Ait El Kadi<span> LLC</span></a
+            >
+            <p>
+              Votre partenaire technologique pour la transformation digitale.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Plan du site</h4>
+            <ul>
+              <li><a href="../index.html">Accueil</a></li>
+              <li><a href="about.html">À propos</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="gallery.html">Galerie</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="services.html">Développement Web</a></li>
+              <li><a href="services.html">Solutions Cloud</a></li>
+              <li><a href="services.html">Cybersécurité</a></li>
+              <li><a href="services.html">Data & IA</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="mailto:contact@aitelkadi.com">contact@aitelkadi.com</a>
+              </li>
+              <li><a href="tel:+212655443322">+212 6 55 44 33 22</a></li>
+              <li><a href="#">Mohammedia, Maroc</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Ait El Kadi Company LLC. Tous droits réservés.</p>
+          <div class="footer-legal">
+            <a href="#">Mentions légales</a>
+            <a href="#">Politique de confidentialité</a>
+            <a href="#">CGU</a>
+            <a href="#">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+      /* ---------- Filter ---------- */
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const items = document.querySelectorAll(".gallery-item");
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const filter = btn.dataset.filter;
+          items.forEach((item) => {
+            const show = filter === "all" || item.dataset.cat === filter;
+            item.style.display = show ? "" : "none";
+          });
+        });
+      });
+
+      /* ---------- Lightbox ---------- */
+      const lightbox = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightbox-img");
+      const lbCaption = document.getElementById("lightbox-caption");
+      const lbClose = document.getElementById("lightbox-close");
+
+      items.forEach((item) => {
+        item.addEventListener("click", () => {
+          const img = item.querySelector("img");
+          lbImg.src = img.src;
+          lbImg.alt = img.alt;
+          lbCaption.textContent = item.dataset.caption || img.alt;
+          lightbox.classList.add("open");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      lbClose.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
+    </script>
+  </body>
+</html>
