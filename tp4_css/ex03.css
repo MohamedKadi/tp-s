@@ -1,0 +1,62 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar > .nav-links {
+  display: flex;
+}
+
+.nav-links > li {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+/*
+2
+*/
+.cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*
+3
+*/
+.grid-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+/*
+
+*/
+.sidebar {
+  grid-area: sidebar;
+  background: lightcoral;
+}
+
+.header {
+  grid-area: header;
+  background: lightblue;
+}
+
+.main {
+  grid-area: main;
+  background: lightgreen;
+}
+
+.footer {
+  grid-area: footer;
+  background: lightgray;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+}

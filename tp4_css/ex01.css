@@ -1,0 +1,49 @@
+/*
+01
+*/
+nav a {
+  text-transform: uppercase;
+}
+/*
+02
+*/
+.active {
+  text-transform: lowercase;
+}
+/*
+03
+*/
+article.featured {
+  text-decoration: line-through;
+}
+/*
+04
+*/
+article p:first-child {
+  color: blue;
+}
+/*
+05
+*/
+li:nth-child(even) {
+  color: green;
+}
+/*
+questions:
+1/
+1- #main .text p
+2- #main
+3- p.text
+4- .text
+5- p
+
+2/
+La dernière déclarée dans le CSS gagne. C'est la règle de l'ordre d'apparition (cascade).
+
+3/Pourquoi éviter !important ?
+Casse la cascade : court-circuite le mécanisme normal de spécificité, rendant le comportement imprévisible.
+Effet boule de neige : pour surcharger un !important, il faut un autre !important, créant une escalade incontrôlable.
+Maintenance difficile : le code devient dur à déboguer — on ne sait plus quelle règle s'applique réellement.
+Bonne pratique : si tu as besoin de !important, c'est souvent le signe que la structure des sélecteurs est mal conçue.
+
+*/

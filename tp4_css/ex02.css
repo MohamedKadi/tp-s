@@ -1,0 +1,39 @@
+/*
+  Q1: content-box => largeur totale visible
+  = width + padding*2 + border*2
+  = 300 + 40 + 10 = 350px
+*/
+.box {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid #333;
+  margin: 15px;
+  box-sizing: border-box;
+}
+
+/*
+  Q2: border-box => largeur totale visible
+  = width = 300px (padding + border inclus)
+*/
+
+/* Q3 - Reset universel */
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+} */
+
+/* 2.2 - Centrage horizontal uniquement */
+/* .centered {
+  width: 600px;
+  margin: 0 auto;
+} */
+
+/* 2.2 - Centrage horizontal + vertical dans la page */
+/* body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
