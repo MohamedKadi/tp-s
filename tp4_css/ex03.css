@@ -60,3 +60,192 @@
     "sidebar main"
     "sidebar footer";
 }
+
+/*
+5 - Responsive (mobile first)
+*/
+/* Base mobile */
+.container {
+  width: 100%;
+  padding: 15px;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.content {
+  display: block;
+}
+
+.sidebar {
+  display: none;
+}
+
+/* Tablette (>= 768px) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .nav-menu {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: block;
+  }
+}
+
+/* Desktop (>= 1024px) */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    padding: 30px;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+  }
+}
+
+/*
+6 - Variables CSS et thèmes
+*/
+:root {
+  --color-primary: #3498db;
+  --color-secondary: #2ecc71;
+  --color-accent: #e74c3c;
+  --color-bg: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-text: #333333;
+  --color-text-muted: #666666;
+  --color-border: #dddddd;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+}
+
+[data-theme="dark"] {
+  --color-primary: #5dade2;
+  --color-secondary: #58d68d;
+  --color-accent: #ec7063;
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-text: #e0e0e0;
+  --color-text-muted: #a0a0a0;
+  --color-border: #444444;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.themed-card {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow);
+}
+
+.themed-card h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.themed-card p {
+  color: var(--color-text-muted);
+}
+
+/*
+7 - Transitions et animations
+*/
+
+/* 7.1 Bouton animé */
+.btn-animated {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--color-primary, #3498db);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn-animated:hover {
+  background-color: var(--color-accent, #e74c3c);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-animated:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* 7.2 Spinner de chargement */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--color-border, #dddddd);
+  border-top-color: var(--color-primary, #3498db);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/*
+8 - Quiz de révision
+
+Q1. Quel sélecteur a la spécificité la plus haute ?
+  [x] b) #header a
+  Raison : un ID (#header) vaut 100 points de spécificité, ce qui dépasse
+           toute combinaison de classes (10 pts) ou d'éléments (1 pt).
+
+Q2. Avec box-sizing: border-box, un élément avec width: 200px et padding: 20px
+    a une largeur totale de :
+  [x] b) 200px
+  Raison : border-box inclut padding et border dans la width déclarée,
+           la largeur occupée reste donc 200px.
+
+Q3. Pour centrer un élément verticalement et horizontalement avec Flexbox :
+  [x] c) justify-content: center ET align-items: center
+  Raison : justify-content centre sur l'axe principal (horizontal par défaut)
+           et align-items centre sur l'axe croisé (vertical par défaut).
+
+Q4. La valeur 1fr en CSS Grid signifie :
+  [x] b) 1 fraction de l'espace disponible
+  Raison : fr est l'unité "fractional unit" qui divise l'espace libre restant
+           proportionnellement entre les pistes.
+
+Q5. L'approche "Mobile First" utilise :
+  [x] b) min-width dans les media queries
+  Raison : on part du style de base pour mobile, puis on ajoute des règles
+           via @media (min-width: ...) pour les écrans plus larges.
+*/
